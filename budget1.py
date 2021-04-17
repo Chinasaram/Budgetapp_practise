@@ -32,16 +32,18 @@ class Budget:
 
     
 
-    def transfer(self):
+    def transfer(self, category):
 
         withdrawFrom = input("What category would you want to transfer from?: ")
         amountTransfer = int(input("How much would you want to transfer? "))
         if withdrawFrom in ["Food", "Clothing", "Housing", "Personal Care", "Data", "Transportation"] and amountTransfer <= self.balance:
              self.balance -= amountTransfer
              print(f"Your current balance for {self.category} is {self.balance}")
+            #  transferTo = input("What category would you want to tranfer to?: ") still unsure about this??
+             category.balance += amountTransfer
+             print(f"Current balance for {category.category} is {category.balance}, transfer successful!")
         else:
             print("Please select a valid category!")
-        transferTo = input("What category would you want to tranfer to?: ")
 
 """
 Still struggling to understand the concept of objects and how you can manipulate their parameters. I'll do more research and update my code on this budget app 
@@ -55,7 +57,7 @@ this is not the proper way to do it but I'll learn that too.
 
 foodBudget = Budget("Food", 5000)
 housingBudget = Budget("Housing", 0)
-clothingBudget = Budget("Clothing", 0) 
+clothingBudget = Budget("Clothing", 1500) 
 personalCareBudget = Budget("Personal Care", 0)
 dataBudget = Budget("Data", 0)
 transportationBudget = Budget("Transportation", 0)
@@ -146,7 +148,7 @@ for userId, userDetails in database.items():
                 print("You have selected an invalid category!")
 
         elif userSelection == 3:
-            pass
+            foodBudget.transfer(clothingBudget)
 
         elif userSelection == 4:
             userCategory = input("What Budget category would you want to check for balance? ")
